@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Verification Policy"
+  short_description: "Verify safely; escalate dependency setup"
+  default_prompt: "Use $project-verification-policy to run required finite verification while avoiding unmanaged servers and escalating dependency setup first."
