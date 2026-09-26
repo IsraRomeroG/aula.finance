@@ -7,11 +7,46 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "check": "astro check",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "astro": "^7.2.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@tailwindcss/vite": "^4.3.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3"
+  },
+  "overrides": {
+    "@astrojs/check": {
+      "@astrojs/language-server": "2.16.13",
+      "yargs": "18.0.0"
+    },
+    "@astrojs/compiler": "2.13.0",
+    "enhanced-resolve": "5.24.4",
+    "vscode-html-languageservice": "5.5.0",
+    "volar-service-css": "0.0.70",
+    "volar-service-emmet": "0.0.70",
+    "volar-service-html": "0.0.70",
+    "volar-service-prettier": "0.0.70",
+    "volar-service-typescript": "0.0.70",
+    "volar-service-typescript-twoslash-queries": "0.0.70",
+    "volar-service-yaml": "0.0.70",
+    "typescript-auto-import-cache": "0.3.5",
+    "@volar/kit": "2.4.27",
+    "@volar/language-core": "2.4.27",
+    "@volar/language-server": "2.4.27",
+    "@volar/language-service": "2.4.27",
+    "@volar/source-map": "2.4.27",
+    "@volar/typescript": "2.4.27",
+    "vscode-languageserver": "8.1.0",
+    "vscode-languageserver-protocol": "3.17.3",
+    "vscode-languageserver-types": "3.17.3"
   }
 }

@@ -1,0 +1,51 @@
+---
+import { SITE } from '@config/site';
+
+interface Props {
+	title?: string;
+	description?: string;
+	canonicalPath?: string;
+	image?: string;
+	imageAlt?: string;
+	noindex?: boolean;
+	type?: 'website' | 'article';
+	jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+	title = SITE.title,
+	description = SITE.description,
+	canonicalPath = '/',
+	image,
+	imageAlt,
+	noindex = false,
+	type = 'website',
+	jsonLd,
+} = Astro.props;
+
+if (!Astro.site) {
+	throw new Error('SeoHead requiere que astro.config.mjs defina site.');
+}
+
+const canonical = new URL(canonicalPath, Astro.site).toString();
+const absoluteImage = image ? new URL(image, Astro.site).toString() : undefined;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+<meta property="og:type" content={type} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:locale" content={SITE.locale} />
+{absoluteImage && <meta property="og:image" content={absoluteImage} />}
+{absoluteImage && imageAlt && <meta property="og:image:alt" content={imageAlt} />}
+<meta name="twitter:card" content={absoluteImage ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{absoluteImage && <meta name="twitter:image" content={absoluteImage} />}
+{jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+<link rel="sitemap" href="/sitemap-index.xml" />

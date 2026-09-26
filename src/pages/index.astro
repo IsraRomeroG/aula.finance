@@ -1,17 +1,30 @@
 ---
-
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { CATEGORIES } from '@config/categories';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+	<section class="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+		<p class="mb-4 font-medium text-[var(--color-accent)]">Educación financiera práctica</p>
+		<h1 class="max-w-3xl text-4xl font-semibold tracking-tight text-[var(--color-text)] sm:text-6xl">
+			Aprende a tomar mejores decisiones con tu dinero.
+		</h1>
+		<p class="mt-6 max-w-2xl text-lg text-[var(--color-muted)]">
+			aula.finance reúne explicaciones claras para administrar mejor tus finanzas personales, reducir deudas y comenzar a invertir con mayor claridad.
+		</p>
+	</section>
+
+	<section class="border-y border-[var(--color-border)] bg-[var(--color-surface)]" aria-labelledby="pilares">
+		<div class="mx-auto max-w-5xl px-6 py-16">
+			<h2 id="pilares" class="text-2xl font-semibold text-[var(--color-text)]">Tres pilares para avanzar</h2>
+			<ul class="mt-8 grid gap-6 md:grid-cols-3">
+				{Object.values(CATEGORIES).map((category) => (
+					<li class="rounded-xl border border-[var(--color-border)] bg-white p-6">
+						<h3 class="font-semibold text-[var(--color-text)]">{category.name}</h3>
+						<p class="mt-2 text-sm text-[var(--color-muted)]">{category.description}</p>
+					</li>
+				))}
+			</ul>
+		</div>
+	</section>
+</BaseLayout>
